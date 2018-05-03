@@ -1,3 +1,6 @@
+//Nome : Maikon Alexander de Barros Dias
+//RA : 1706330
+
 var Queue = function(){
 	this.queue = []
 
