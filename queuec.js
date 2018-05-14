@@ -1,7 +1,7 @@
 //Nome : Maikon Alexander de Barros Dias
 //RA : 1706330
 
-var Queue = function(){
+var Queue = function(max){
 	this.queue = []
 
 	this.reset = function(){
@@ -10,11 +10,14 @@ var Queue = function(){
 	}
 
 	this.reset();
+	this.max = max || Queue.MAX
 	
 	this.increment = function(number){
-		return (number+1)
+		return (number+1) % this.max
 	}
 }
+
+Queue.MAX = Math.pow(2, 53) -1;
 
 Queue.prototype.Full = function(){
 	return this.increment(this.rear) === this.front;
@@ -75,16 +78,29 @@ Queue.prototype.print = function(){
 	}	
 }
 
-var q = new Queue()
-q.print()
+var q = new Queue(5)
 
 q.enQueue(1)
 q.enQueue(2)
 q.enQueue(3)
 q.enQueue(4)
 console.log("Valores Adicionados.:")
-q.print()
+console.log(q.queue)
+console.log("front.:",q.front)
+console.log("rear.:",q.rear)
+console.log("buscando o segundo valor da lista.: ",q.search(2))
+q.deQueue()
+q.deQueue()
+q.deQueue()
+q.enQueue(5)
+q.enQueue(6)
+q.enQueue(7)
+q.enQueue(8)
+q.deQueue()
+q.deQueue()
 q.deQueue()
 console.log("\nValor removido do começo.:")
-q.print()
-console.log("buscando um valor da lista.: ",q.search(1))
+console.log(q.queue)
+console.log("buscando o segundo valor da lista.: ",q.search(2))
+console.log("front.:",q.front)
+console.log("rear.:",q.rear)
